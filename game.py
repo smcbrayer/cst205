@@ -1,4 +1,4 @@
-#Game
+# Game
 # start game with game()
 
 # lab 11 strategy game
