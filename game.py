@@ -126,8 +126,10 @@ def startingRoom():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "open":
       global items
+      global secret     
       if 'map' not in items:       
         items.append('map')
+        play(secret)
         printNow("You found the map! You can view it by entering \"map\".")
       else:
         printNow("There is nothing here.")
@@ -349,8 +351,10 @@ def secretRoom():
       room4()
     elif userInput == "grab":
       global items
+      global secret
       if 'gun' not in items:
         items.append('gun')
+        play(secret)
         for b in range(0, 6):
           items.append('bullet')
         printNow("You grabbed it! Hope you wont need to use the \"gun\".")
@@ -405,7 +409,9 @@ def room6():
       room4()
     elif userInput == "grab":
       global items
+      global secret
       if 'idol' not in items:
+        play(secret)
         items.append('idol')
         printNow("You grabbed it! your health has been increased.")
         global myHealth
