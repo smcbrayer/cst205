@@ -353,8 +353,8 @@ def secretRoom():
       global items
       global secret
       if 'gun' not in items:
-        items.append('gun')
         play(secret)
+        items.append('gun')
         for b in range(0, 6):
           items.append('bullet')
         printNow("You grabbed it! Hope you wont need to use the \"gun\".")
