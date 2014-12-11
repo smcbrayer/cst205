@@ -12,6 +12,10 @@
 #Process the answer and respond accordingly
 
 import random
+# needed for getting current working directory
+import os
+
+
 ########################
 # Global variables
 
@@ -53,6 +57,8 @@ def map():
                
 ########################
 # room 1
+# golden gate
+
 def startingRoom():
   weAreHere = 0
   printNow("\n-----------------\n")
@@ -100,6 +106,8 @@ def startingRoom():
    
 ########################
 # room 2
+# grand canyon
+
 def room2():
   weAreHere = 0
   printNow("\n-----------------\n")
@@ -146,6 +154,8 @@ def room2():
 
 ########################
 # room 3
+# colosseum
+
 def room3():
   weAreHere = 0
   printNow("\n-----------------\n")
@@ -186,11 +196,13 @@ def room3():
       
 ########################
 # room 4
+# ocean
+
 def room4():
   weAreHere = 0
   printNow("\n-----------------\n")
   # print description
-  room = "You enter Room4 there is an odd bookcase you can \"look\" at..."
+  room = "You arrive at the Ocean there is an odd chest you can \"look\" at or you can go for a \"swim\"..."
   printNow(room)
   # print directions
   directions = "You can go \"back\" \"north\" or \"east\" \n"
@@ -223,6 +235,9 @@ def room4():
     elif userInput == "north":
       weAreHere = 1
       room2()
+    elif userInput == "swim":
+      weAreHere = 1
+      room6()
     elif userInput == "look":
       weAreHere = 1
       secretRoom()
@@ -235,6 +250,8 @@ def room4():
 
 ########################
 # room 5
+# arctic
+
 def room5():
   weAreHere = 0
   printNow("\n-----------------\n")
@@ -245,6 +262,8 @@ def room5():
   
 ########################
 # secret room
+# pyramid
+
 def secretRoom():
   weAreHere = 0
   printNow("\n-----------------\n")
@@ -292,7 +311,62 @@ def secretRoom():
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")
-      
+
+########################
+# second secret room secret room
+# tajmahal
+# reasure chest or underground cave from room 4 (ocean)
+# magic whirlpool
+
+def room6():
+  weAreHere = 0
+  printNow("\n-----------------\n")
+  # print description
+  room = "You find yourself at the tajmahal there is a miniture statue you can \"grab\"..."
+  printNow(room)
+  # print directions
+  directions = "There are no other exits You can only go \"back\"\n"
+  printNow(directions)
+  # get user input
+  userInput = requestString("Please enter a choice: ")
+  # while user input
+  while weAreHere == 0:
+    if userInput == "exit":
+      global quitGame
+      weAreHere = 1
+      quitGame = 1
+    elif userInput == "help":
+      welcome()
+      printNow("")
+      userInput = requestString("Please enter a valid choice!")
+    elif userInput == "room":
+      printNow(room)
+      printNow(directions)
+      userInput = requestString("Please enter a choice: ")
+    elif userInput == "map":
+      map()
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "back":
+      weAreHere = 1
+      room4()
+    elif userInput == "grab":
+      global items
+      if 'idol' not in items:
+        items.append('idol')
+        printNow("You grabbed it! your health has been increased.")
+        global myHealth
+        myHealth += 50
+      else:
+        printNow("There is nothing here.")
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "health":
+      global myHealth
+      printNow("Your health = " + str(myHealth))
+      userInput = requestString("Please Enter a choice.")
+    else:
+      userInput = requestString("Please enter a valid choice!")            
+
+
 ########################
 #use gun
 def useGun():
