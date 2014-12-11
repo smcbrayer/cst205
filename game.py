@@ -24,6 +24,43 @@ items = []
 bossHealth = 50
 myHealth = 50
 userName = ""
+# global sounds
+glass = ()
+gunshot = ()
+necksnap = ()
+punch = ()
+room = ()
+secret = ()
+
+########################
+# choose sounds
+def picSound():
+  """Pick and Make a sound"""
+  global glass
+  global gunshot
+  global necksnap
+  global punch
+  global portal
+  global secret
+   
+  printNow("Please pick the BOSS glassbrk.wav sound clip from assets/sounds/boss folder")
+  filename = pickAFile()
+  glass = makeSound(filename)
+  printNow("Please pick the BOSS gunshot sound clip from assets/sounds/boss folder")
+  filename = pickAFile()
+  gunshot = makeSound(filename)
+  printNow("Please pick the BOSS necksnap sound clip from assets/sounds/boss folder")
+  filename = pickAFile()
+  necksnap = makeSound(filename)
+  printNow("Please pick the BOSS punch sound clip  from assets/sounds/boss folder")
+  filename = pickAFile()
+  punch = makeSound(filename)
+  printNow("Please pick the portal sound clip  from assets/sounds/room folder")
+  filename = pickAFile()
+  portal = makeSound(filename)  
+  printNow("Please pick the secret.wav sound clip from assets/sounds/secret folder")
+  filename = pickAFile()
+  secret = makeSound(filename)
 
 
 ########################
@@ -32,7 +69,11 @@ def welcome():
   global userName
   userName = requestString("Please enter your name")
   
+  
   showInformation("Welcome, " + userName)
+  #init sound
+  picSound()
+  
   printNow("\nIn each room you will be told which directions you can go.")
   printNow("You'll be able to go north, south, east or west by typing that direction.")
   printNow("To display heatlh stats, enter \"health\".")
@@ -109,6 +150,8 @@ def startingRoom():
 # grand canyon
 
 def room2():
+  global portal
+  play(portal)
   weAreHere = 0
   printNow("\n-----------------\n")
   # print description
@@ -137,6 +180,7 @@ def room2():
       map()
       userInput = requestString("Please enter a choice.")
     elif userInput == "back":
+      play(portal)
       weAreHere = 1
       startingRoom()
     elif userInput == "east":
@@ -158,6 +202,8 @@ def room2():
 
 def room3():
   weAreHere = 0
+  global portal
+  play(portal)
   printNow("\n-----------------\n")
   # print description
   room = "You enter Room3 all the windows are boarded up..."
@@ -200,6 +246,8 @@ def room3():
 
 def room4():
   weAreHere = 0
+  global portal
+  play(portal)
   printNow("\n-----------------\n")
   # print description
   room = "You arrive at the Ocean there is an odd chest you can \"look\" at or you can go for a \"swim\"..."
@@ -254,6 +302,8 @@ def room4():
 
 def room5():
   weAreHere = 0
+  global portal
+  play(portal)
   printNow("\n-----------------\n")
   # print description
   room = "You enter Room5 the door slams shut behind you...a scary guy blocks your path"
@@ -266,6 +316,8 @@ def room5():
 
 def secretRoom():
   weAreHere = 0
+  global portal
+  play(portal)
   printNow("\n-----------------\n")
   # print description
   room = "You enter a Secret Room from the bookcase in the center of the room you see a Gun you can  \"grab\" ..."
@@ -320,6 +372,8 @@ def secretRoom():
 
 def room6():
   weAreHere = 0
+  global portal
+  play(portal)
   printNow("\n-----------------\n")
   # print description
   room = "You find yourself at the tajmahal there is a miniture statue you can \"grab\"..."
