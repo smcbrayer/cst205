@@ -179,16 +179,16 @@ def welcome():
   picPic(localPath)
   
   
-  printNow("\nIn each room you will be told which directions you can go.")
-  printNow("You'll be able to go north, south, east or west by typing that direction.")
-  printNow("To display heatlh stats, enter \"health\".")
-  printNow("To repeat the room description enter \"room\".")  
-  printNow("Type help to redisplay this introduction.")
-  printNow("Type exit to quit at any time.\n")
+  showInformation("In each room you will be told which directions you can go.")
+  showInformation("You'll be able to go north, south, east or west by typing that direction.")
+  showInformation("To display heatlh stats, enter \"health\".")
+  showInformation("To repeat the room description enter \"room\".")  
+  showInformation("Type help to redisplay this introduction.")
+  showInformation("Type exit to quit at any time.")
 
 def map():
   if "map" in items:
-    printNow(""" 
+    showInformation(""" 
                  N
                W   E
                  S
@@ -210,18 +210,17 @@ def startingRoom():
   global player
   global roomPic
   
-  #roomPic = player
   roomPic = chromaKey(player, sanfran)
   repaint(roomPic)
   
   weAreHere = 0
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You are in the starting room. There is a chest you can \"open\" in the corner..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "\nYou can only go south to room 2\n"
-  printNow(directions)
+  showInformation(directions)
   userInput = requestString("Please enter a choice: ")
   # while user input
   while weAreHere == 0:
@@ -231,11 +230,11 @@ def startingRoom():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a choice")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "open":
       global items
@@ -243,9 +242,9 @@ def startingRoom():
       if 'map' not in items:       
         items.append('map')
         play(secret)
-        printNow("You found the map! You can view it by entering \"map\".")
+        showInformation("You found the map! You can view it by entering \"map\".")
       else:
-        printNow("There is nothing here.")
+        showInformation("There is nothing here.")
       userInput = requestString("Please enter a choice.")
     elif userInput == "map":
       map()
@@ -255,7 +254,7 @@ def startingRoom():
       room2()
     elif userInput == "health":
       global myHealth
-      printNow("Your health = " + str(myHealth))
+      showInformation("Your health = " + str(myHealth))
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")
@@ -272,18 +271,17 @@ def room2():
   
   play(portal)
   
-  #roomPic = player
   roomPic = chromaKey(player, grandcanyon)
   repaint(roomPic)
   
   weAreHere = 0
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You enter Room2 its under constuction debris is everywhere..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "You can go \"back\" \"east\" or \"south\"\n"
-  printNow(directions)
+  showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -294,11 +292,11 @@ def room2():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a valid choice!")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
@@ -315,7 +313,7 @@ def room2():
       room4()
     elif userInput == "health":
       global myHealth
-      printNow("Your health =" + str(myHealth))
+      showInformation("Your health =" + str(myHealth))
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")
@@ -328,13 +326,13 @@ def room3():
   weAreHere = 0
   global portal
   play(portal)
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You enter Room3 all the windows are boarded up..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "You can go \"back\"\n"
-  printNow(directions)
+  showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -345,11 +343,11 @@ def room3():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a valid choice!")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
@@ -359,7 +357,7 @@ def room3():
       room2()
     elif userInput == "health":
       global myHealth
-      printNow("Your health = " + str(myHealth))
+      showInformation("Your health = " + str(myHealth))
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")
@@ -372,13 +370,13 @@ def room4():
   weAreHere = 0
   global portal
   play(portal)
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You arrive at the Ocean there is an odd chest you can \"look\" at or you can go for a \"swim\"..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "You can go \"back\" \"north\" or \"east\" \n"
-  printNow(directions)
+  showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -389,11 +387,11 @@ def room4():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a valid choice!")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
@@ -415,7 +413,7 @@ def room4():
       secretRoom()
     elif userInput == "health":
       global myHealth
-      printNow("Your health = " + str(myHealth))
+      showInformation("Your health = " + str(myHealth))
       userInput = requestString("Please Enter a choice.")  
     else:
       userInput = requestString("Please enter a valid choice!")
@@ -428,10 +426,10 @@ def room5():
   weAreHere = 0
   global portal
   play(portal)
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You enter Room5 the door slams shut behind you...a scary guy blocks your path"
-  printNow(room)
+  showInformation(room)
   bossFight()
   
 ########################
@@ -442,13 +440,13 @@ def secretRoom():
   weAreHere = 0
   global portal
   play(portal)
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You enter a Secret Room from the bookcase in the center of the room you see a Gun you can  \"grab\" ..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "There are no other exits You can only go \"back\"\n"
-  printNow(directions)
+  showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -459,11 +457,11 @@ def secretRoom():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a valid choice!")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
@@ -479,13 +477,13 @@ def secretRoom():
         items.append('gun')
         for b in range(0, 6):
           items.append('bullet')
-        printNow("You grabbed it! Hope you wont need to use the \"gun\".")
+        showInformation("You grabbed it! Hope you wont need to use the \"gun\".")
       else:
-        printNow("There is nothing here.")
+        showInformation("There is nothing here.")
       userInput = requestString("Please enter a choice.")
     elif userInput == "health":
       global myHealth
-      printNow("Your health = " + str(myHealth))
+      showInformation("Your health = " + str(myHealth))
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")
@@ -500,13 +498,13 @@ def room6():
   weAreHere = 0
   global portal
   play(portal)
-  printNow("\n-----------------\n")
+  showInformation("\n-----------------\n")
   # print description
   room = "You find yourself at the tajmahal there is a miniture statue you can \"grab\"..."
-  printNow(room)
+  showInformation(room)
   # print directions
   directions = "There are no other exits You can only go \"back\"\n"
-  printNow(directions)
+  showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -517,11 +515,11 @@ def room6():
       quitGame = 1
     elif userInput == "help":
       welcome()
-      printNow("")
+      showInformation("")
       userInput = requestString("Please enter a valid choice!")
     elif userInput == "room":
-      printNow(room)
-      printNow(directions)
+      showInformation(room)
+      showInformation(directions)
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
@@ -535,15 +533,15 @@ def room6():
       if 'idol' not in items:
         play(secret)
         items.append('idol')
-        printNow("You grabbed it! your health has been increased.")
+        showInformation("You grabbed it! your health has been increased.")
         global myHealth
         myHealth += 50
       else:
-        printNow("There is nothing here.")
+        showInformation("There is nothing here.")
       userInput = requestString("Please enter a choice.")
     elif userInput == "health":
       global myHealth
-      printNow("Your health = " + str(myHealth))
+      showInformation("Your health = " + str(myHealth))
       userInput = requestString("Please Enter a choice.")
     else:
       userInput = requestString("Please enter a valid choice!")            
@@ -579,7 +577,7 @@ def bossFight():
       weAreHere = 1
     else:
       directions = "You can use your \"gun\" or \"punch\"."
-      printNow(directions)
+      showInformation(directions)
       userInput = requestString("Please enter a choice:")
       if userInput == "exit":
         weAreHere = 1
@@ -587,34 +585,34 @@ def bossFight():
       elif userInput == "gun":
         if "gun" in items:
           result = useGun()
-          printNow(result)
+          showInformation(result)
           if "Hit" in result:
             bossHealth -= 10
         else:
-          printNow("You don't have a gun!")
+          showInformation("You don't have a gun!")
       elif userInput == "punch":
         result = punch()
-        printNow(result)
+        showInformation(result)
         if "Hit" in result:
           bossHealth -= 5
       elif userInput == "health":
-        printNow("Your health = " + str(myHealth))
-        printNow("Boss's health = " + str(bossHealth))    
+        showInformation("Your health = " + str(myHealth))
+        showInformation("Boss's health = " + str(bossHealth))    
       else:
         userInput = requestString("Please enter a valid choice")
       if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
         i = random.random()
         if int(i * 100) >= 80:
-          printNow("Boss has hit you")
+          showInformation("Boss has hit you")
           myHealth -= 5
         else:
-          printNow("Boss swings and misses")
+          showInformation("Boss swings and misses")
  
   if myHealth > 0:
-    printNow("You killed the boss.  Congratulations!")
+    showInformation("You killed the boss.  Congratulations!")
     quitGame = 1
   else:
-    printNow("You are dead")
+    showInformation("You are dead")
     quitGame = 1
     
   
@@ -636,7 +634,7 @@ def game():
   global quitGame
   quitGame = 0
   while quitGame == 0:
-    printNow("You awake in a dark room there is yelling in the distance...")
+    showInformation("You awake in a dark room there is yelling in the distance...")
     startingRoom()
 
   # goodbye message
