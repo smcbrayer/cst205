@@ -24,6 +24,8 @@ items = []
 bossHealth = 50
 myHealth = 50
 userName = ""
+localPath = ""
+
 # global sounds
 glass = ()
 gunshot = ()
@@ -32,9 +34,44 @@ punch = ()
 room = ()
 secret = ()
 
+# global pictures
+roomPic = ()
+player = ()
+arctic = ()
+egypt = ()
+grandcanyon = ()
+ocean = ()
+rome = ()
+sanfran = ()
+tajmahal = ()
+colt = ()
+eye = ()
+kali = ()
+boom = ()
+powPic = ()
+zap = ()
+
+########################
+def chromaKey(player, location):
+  #replace a green screen background with
+  
+  foreground = duplicatePicture(player)
+  background = duplicatePicture(location)
+  pixel = getPixel(foreground, 0, 0)
+  colorGreen = getColor(pixel)
+  for x in range(0, getWidth(foreground)):
+    for y in range(0, getHeight(foreground)):
+      pixel = getPixel(foreground, x, y)
+      pixel2 = getPixel(background, x, y)
+      color = getColor(pixel)
+      color2 = getColor(pixel2)
+      if distance(color, colorGreen) < 60:
+        setColor(pixel, color2)
+  return(foreground)
+
 ########################
 # choose sounds
-def picSound():
+def picSound(localPath):
   """Pick and Make a sound"""
   global glass
   global gunshot
@@ -43,36 +80,104 @@ def picSound():
   global portal
   global secret
    
-  printNow("Please pick the BOSS glassbrk.wav sound clip from assets/sounds/boss folder")
-  filename = pickAFile()
-  glass = makeSound(filename)
-  printNow("Please pick the BOSS gunshot sound clip from assets/sounds/boss folder")
-  filename = pickAFile()
-  gunshot = makeSound(filename)
-  printNow("Please pick the BOSS necksnap sound clip from assets/sounds/boss folder")
-  filename = pickAFile()
-  necksnap = makeSound(filename)
-  printNow("Please pick the BOSS punch sound clip  from assets/sounds/boss folder")
-  filename = pickAFile()
-  punch = makeSound(filename)
-  printNow("Please pick the portal sound clip  from assets/sounds/room folder")
-  filename = pickAFile()
-  portal = makeSound(filename)  
-  printNow("Please pick the secret.wav sound clip from assets/sounds/secret folder")
-  filename = pickAFile()
-  secret = makeSound(filename)
+  
+  glass = os.path.abspath(localPath + "assets/sounds/boss/glassbrk.wav")
+  glass = makeSound(glass)
+  
+  gunshot = os.path.abspath(localPath + "assets/sounds/boss/gunshot.wav")
+  gunshot = makeSound(gunshot)
+  
+  necksnap = os.path.abspath(localPath + "assets/sounds/boss/necksnap.wav")
+  necksnap = makeSound(necksnap)
+  
+  punch = os.path.abspath(localPath + "assets/sounds/boss/punch.wav")
+  punch = makeSound(punch)
+  
+  portal = os.path.abspath(localPath + "assets/sounds/room/portal.wav")
+  portal = makeSound(portal)  
+  
+  secret = os.path.abspath(localPath + "assets/sounds/secret/secret.wav")
+  secret = makeSound(secret)
+  
+########################
+# choose pictures
 
+def picPic(localPath):
+  #Load all pictures to be used in the game
+  
+  global player
+  global arctic
+  global egypt
+  global grandcanyon
+  global ocean
+  global rome
+  global sanfran
+  global tajmahal
+  global colt
+  global eye
+  global kali
+  global boom
+  global powPic
+  global zap
+  
+  player = os.path.abspath(localPath + "assets/image/char/solo.jpg")
+  player = makePicture(player)
+  
+  arctic = os.path.abspath(localPath + "assets/image/room/arctic.jpg")
+  arctic = makePicture(arctic)
+ 
+  egypt = os.path.abspath(localPath + "assets/image/room/egypt.jpg")
+  egypt = makePicture(egypt)
+  
+  grandcanyon = os.path.abspath(localPath + "assets/image/room/grandcanyon.jpg")
+  grandcanyon = makePicture(grandcanyon)
+  
+  ocean = os.path.abspath(localPath + "assets/image/room/ocean.jpg")
+  ocean = makePicture(ocean)
+  
+  rome = os.path.abspath(localPath + "assets/image/room/rome.jpg")
+  rome = makePicture(rome)
+
+  sanfran = os.path.abspath(localPath + "assets/image/room/sanfran.jpg")
+  sanfran = makePicture(sanfran)
+  
+  tajmahal = os.path.abspath(localPath + "assets/image/room/tajmahal.jpg")
+  tajmahal = makePicture(tajmahal)
+  
+  colt = os.path.abspath(localPath + "assets/image/secret/colt.jpg")
+  colt = makePicture(colt)
+  
+  eye = os.path.abspath(localPath + "assets/image/secret/eye.jpg")
+  eye = makePicture(eye)
+  
+  kali = os.path.abspath(localPath + "assets/image/secret/kali.jpg")
+  kali = makePicture(kali)
+  
+  boom = os.path.abspath(localPath + "assets/image/boss/boom.jpg")
+  boom = makePicture(boom)
+  
+  powPic = os.path.abspath(localPath + "assets/image/boss/pow.jpg")
+  powPic = makePicture(powPic)
+
+  zap = os.path.abspath(localPath + "assets/image/boss/zap.jpg")
+  zap = makePicture(zap)
+ 
 
 ########################
 # welcome message
 def welcome():
+  global localPath
+  localPath = "/Users/JFransen44/Documents/CSUMB/GitJeremy/cst205/" #requestString("Please enter your local file path.  The game will append \'assets\' plus any additional info") commented out for testing
+  
   global userName
   userName = requestString("Please enter your name")
   
-  
   showInformation("Welcome, " + userName)
-  #init sound
-  picSound()
+  
+  #init sound and pictures
+  picSound(localPath)
+  picPic(localPath)
+  
   
   printNow("\nIn each room you will be told which directions you can go.")
   printNow("You'll be able to go north, south, east or west by typing that direction.")
@@ -101,13 +206,21 @@ def map():
 # golden gate
 
 def startingRoom():
+  global sanfran
+  global player
+  global roomPic
+  
+  #roomPic = player
+  roomPic = chromaKey(player, sanfran)
+  repaint(roomPic)
+  
   weAreHere = 0
   printNow("\n-----------------\n")
   # print description
   room = "You are in the starting room. There is a chest you can \"open\" in the corner..."
   printNow(room)
   # print directions
-  directions = "\nYou can only go south to room2\n"
+  directions = "\nYou can only go south to room 2\n"
   printNow(directions)
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -153,7 +266,16 @@ def startingRoom():
 
 def room2():
   global portal
+  global player
+  global grandcanyon
+  global roomPic
+  
   play(portal)
+  
+  #roomPic = player
+  roomPic = chromaKey(player, grandcanyon)
+  repaint(roomPic)
+  
   weAreHere = 0
   printNow("\n-----------------\n")
   # print description
