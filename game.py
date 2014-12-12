@@ -167,7 +167,8 @@ def picPic(localPath):
 # welcome message
 def welcome():
   global localPath
-  localPath = "/Users/JFransen44/Documents/CSUMB/GitJeremy/cst205/" #requestString("Please enter your local file path.  The game will append \'assets\' plus any additional info") commented out for testing
+  showInforamtion("Please select your local file path.")
+  localPath = setMediaFolder
   
   global userName
   userName = requestString("Please enter your name")
