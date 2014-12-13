@@ -16,6 +16,7 @@
 <menu_button time="Sun Dec 07 15:06:38 PST 2014">Save Program</menu_button>
 <file_saved time="Sun Dec 07 15:06:38 PST 2014">C:\Users\Spock\python\205final\game.py</file_saved>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <file_opened time="Sat Dec 13 10:39:23 PST 2014">/Users/JFransen44/Documents/CSUMB/GitJeremy/cst205/game.py</file_opened>
 <menu_button time="Sat Dec 13 10:50:33 PST 2014">Load Program</menu_button>
 <file_saved time="Sat Dec 13 10:50:34 PST 2014">/Users/JFransen44/Documents/CSUMB/GitJeremy/cst205/game.py</file_saved>
@@ -35,6 +36,8 @@
 <menu_button time="Sat Dec 13 10:57:13 PST 2014">Load Program</menu_button>
 <file_saved time="Sat Dec 13 10:57:14 PST 2014">/Users/JFransen44/Documents/CSUMB/GitJeremy/cst205/game.py</file_saved>
 =======
+=======
+>>>>>>> FETCH_HEAD
 <file_opened time="Sat Dec 13 06:04:26 PST 2014">C:\Users\maria\Documents\GitHub\cst205\game.py</file_opened>
 <menu_button time="Sat Dec 13 06:04:35 PST 2014">Load Program</menu_button>
 <menu_button time="Sat Dec 13 06:04:57 PST 2014">Load Program</menu_button>
@@ -199,5 +202,8 @@
 <menu_button time="Sat Dec 13 10:41:04 PST 2014">Load Program</menu_button>
 <menu_button time="Sat Dec 13 10:51:02 PST 2014">Load Program</menu_button>
 <file_saved time="Sat Dec 13 10:51:03 PST 2014">C:\Users\maria\Documents\GitHub\cst205\game.py</file_saved>
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 </file_created>

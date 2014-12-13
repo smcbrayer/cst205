@@ -25,6 +25,7 @@ bossHealth = 50
 myHealth = 50
 userName = ""
 localPath = ""
+<<<<<<< HEAD
 
 # global sounds
 glass = ()
@@ -138,6 +139,121 @@ def picPic(localPath):
   rome = os.path.abspath(localPath + "/image/room/rome.jpg")
   rome = makePicture(rome)
 
+=======
+
+# global sounds
+glass = ()
+gunshot = ()
+necksnap = ()
+punch = ()
+room = ()
+secret = ()
+
+# global pictures
+roomPic = ()
+player = ()
+arctic = ()
+egypt = ()
+grandcanyon = ()
+ocean = ()
+rome = ()
+sanfran = ()
+tajmahal = ()
+colt = ()
+eye = ()
+kali = ()
+boom = ()
+powPic = ()
+zap = ()
+
+########################
+def chromaKey(player, location):
+  #replace a green screen background with
+  
+  foreground = duplicatePicture(player)
+  background = duplicatePicture(location)
+  pixel = getPixel(foreground, 0, 0)
+  colorGreen = getColor(pixel)
+  for x in range(0, getWidth(foreground)):
+    for y in range(0, getHeight(foreground)):
+      pixel = getPixel(foreground, x, y)
+      pixel2 = getPixel(background, x, y)
+      color = getColor(pixel)
+      color2 = getColor(pixel2)
+      if distance(color, colorGreen) < 60:
+        setColor(pixel, color2)
+  return(foreground)
+
+########################
+# choose sounds
+def picSound(localPath):
+  """Pick and Make a sound"""
+  global glass
+  global gunshot
+  global necksnap
+  global punch
+  global portal
+  global secret
+   
+  
+  glass = os.path.abspath(localPath + "/sounds/boss/glassbrk.wav")
+  glass = makeSound(glass)
+  
+  gunshot = os.path.abspath(localPath + "/sounds/boss/gunshot.wav")
+  gunshot = makeSound(gunshot)
+  
+  necksnap = os.path.abspath(localPath + "/sounds/boss/necksnap.wav")
+  necksnap = makeSound(necksnap)
+  
+  punch = os.path.abspath(localPath + "/sounds/boss/punch.wav")
+  punch = makeSound(punch)
+  
+  portal = os.path.abspath(localPath + "/sounds/room/portal.wav")
+  portal = makeSound(portal)  
+  
+  secret = os.path.abspath(localPath + "/sounds/secret/secret.wav")
+  secret = makeSound(secret)
+  
+########################
+# choose pictures
+
+def picPic(localPath):
+  #Load all pictures to be used in the game
+  
+  global player
+  global arctic
+  global egypt
+  global grandcanyon
+  global ocean
+  global rome
+  global sanfran
+  global tajmahal
+  global colt
+  global eye
+  global kali
+  global boom
+  global powPic
+  global zap
+  
+  player = os.path.abspath(localPath + "/image/char/solo.jpg")
+  player = makePicture(player)
+  
+  arctic = os.path.abspath(localPath + "/image/room/arctic.jpg")
+  arctic = makePicture(arctic)
+ 
+  egypt = os.path.abspath(localPath + "/image/room/egypt.jpg")
+  egypt = makePicture(egypt)
+  
+  grandcanyon = os.path.abspath(localPath + "/image/room/grandcanyon.jpg")
+  grandcanyon = makePicture(grandcanyon)
+  
+  ocean = os.path.abspath(localPath + "/image/room/ocean.jpg")
+  ocean = makePicture(ocean)
+  
+  rome = os.path.abspath(localPath + "/image/room/rome.jpg")
+  rome = makePicture(rome)
+
+>>>>>>> FETCH_HEAD
   sanfran = os.path.abspath(localPath + "/image/room/sanfran.jpg")
   sanfran = makePicture(sanfran)
   
@@ -168,17 +284,24 @@ def picPic(localPath):
 def welcome():
   global localPath
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> FETCH_HEAD
   showInformation("""
 WORLDS OF WONDER ADVENTURE GAME\n  
 _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
 """)
 
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
   showInformation("Please select \"assets\" as your directory.")
   localPath = setMediaFolder()
   
   global userName
+<<<<<<< HEAD
 <<<<<<< HEAD
   
   userName = requestString("Please enter your name")
@@ -188,11 +311,17 @@ _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
   showInformation("Welcome, " + userName)
 =======
   
+=======
+  
+>>>>>>> FETCH_HEAD
   userName = requestString("Hello traveler, what is your name?")
   while userName == "":
     userName = requestString("Please enter a valid name")
   
   showInformation("Welcome, " + userName + ".")
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
   
   #init sound and pictures
@@ -202,6 +331,7 @@ _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
   
   showInformation("In each room you will be told which directions you can go.")
 <<<<<<< HEAD
+<<<<<<< HEAD
   showInformation("You'll be able to go north, south, east or west by typing that direction.")
   showInformation("To display heatlh stats, enter \"health\".")
   showInformation("To display your current inventory, enter \"inventory\".")
@@ -210,16 +340,22 @@ _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
   showInformation("Type exit to quit at any time.")
   
 =======
+=======
+>>>>>>> FETCH_HEAD
   showInformation("You'll be able to go north, south, east or west by typing that direction. It can take some time to travel through the portals. Be Patient.")
   showInformation("To display health stats, type \"health\".")
   showInformation("If you forget where you are, type \"room\".")  
   showInformation("Type \"help\" to redisplay these instructions.")
   showInformation("Type \"exit\" to end your adventure at any time.")
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 
 def map():
   if "map" in items:
     showInformation(""" 
+<<<<<<< HEAD
 <<<<<<< HEAD
                  N
                W   E
@@ -231,6 +367,8 @@ def map():
                  _|_____      ______
          (S)-   |_room4_| -  |_boss_|\n""")
 =======
+=======
+>>>>>>> FETCH_HEAD
   N
 W   E
   S
@@ -244,6 +382,9 @@ W   E
               _|______
              |_secret_|\n""")
          
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
     return
 
@@ -261,7 +402,10 @@ def inventory():
       s += i + ", "
   if numBullets == 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
     s = s[0:len(s)-2]
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
     showInformation(s)
@@ -272,8 +416,11 @@ def inventory():
     s += str(numBullets) + " bullets"
     showInformation(s)
 <<<<<<< HEAD
+<<<<<<< HEAD
                  
 =======
+=======
+>>>>>>> FETCH_HEAD
                
 >>>>>>> FETCH_HEAD
 ########################
@@ -292,10 +439,17 @@ def startingRoom():
   
   # print description
 <<<<<<< HEAD
+<<<<<<< HEAD
   room = "You are in the starting room. There is a chest you can \"open\" in the corner..."
   showInformation(room)
   # print directions
   directions = "You can only go south to room 2"
+=======
+  room = "You look around the rocky beach. You see an old chest you can \"open\" in the sand..."
+  showInformation(room)
+  # print directions
+  directions = "You see a portal to the south."
+>>>>>>> FETCH_HEAD
 =======
   room = "You look around the rocky beach. You see an old chest you can \"open\" in the sand..."
   showInformation(room)
@@ -314,7 +468,11 @@ def startingRoom():
       welcome()
       showInformation("")
 <<<<<<< HEAD
+<<<<<<< HEAD
       userInput = requestString("Please enter a choice")
+=======
+      userInput = requestString("Please enter a choice:")
+>>>>>>> FETCH_HEAD
 =======
       userInput = requestString("Please enter a choice:")
 >>>>>>> FETCH_HEAD
@@ -331,10 +489,17 @@ def startingRoom():
         items.append('map')
         play(secret)
 <<<<<<< HEAD
+<<<<<<< HEAD
         showInformation("You found the map! You can view it by entering \"map\".")
       else:
         showInformation("There is nothing here.")
       userInput = requestString("Please enter a choice.")
+=======
+        showInformation("You found the map! You can view it by typing \"map\".")
+      else:
+        showInformation("There is nothing here.")
+      userInput = requestString("Please enter a choice:")
+>>>>>>> FETCH_HEAD
 =======
         showInformation("You found the map! You can view it by typing \"map\".")
       else:
@@ -352,7 +517,11 @@ def startingRoom():
       global myHealth
       showInformation("Your health = " + str(myHealth))
 <<<<<<< HEAD
+<<<<<<< HEAD
       userInput = requestString("Please Enter a choice.")
+=======
+      userInput = requestString("Please enter a choice:")
+>>>>>>> FETCH_HEAD
 =======
       userInput = requestString("Please enter a choice:")
 >>>>>>> FETCH_HEAD
@@ -378,15 +547,21 @@ def room2():
   
   # print description
 <<<<<<< HEAD
+<<<<<<< HEAD
   room = "You enter Room2 its under constuction debris is everywhere..."
   showInformation(room)
   # print directions
   directions = "You can go \"back\" \"east\" or \"south\""
 =======
+=======
+>>>>>>> FETCH_HEAD
   room = "You are teleported to the Grand Canyon, it's a long way down..."
   showInformation(room)
   # print directions
   directions = "You see portals to the \"east\" and \"south\" or go \"back\". "
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
   showInformation(directions)
   # get user input
@@ -424,7 +599,11 @@ def room2():
       global myHealth
       showInformation("Your health =" + str(myHealth))
 <<<<<<< HEAD
+<<<<<<< HEAD
       userInput = requestString("Please Enter a choice.")
+=======
+      userInput = requestString("Please enter a choice:")
+>>>>>>> FETCH_HEAD
 =======
       userInput = requestString("Please enter a choice:")
 >>>>>>> FETCH_HEAD
@@ -438,6 +617,7 @@ def room2():
 def room3():
   
   weAreHere = 0
+<<<<<<< HEAD
 <<<<<<< HEAD
   global portal
   play(portal)
@@ -459,10 +639,26 @@ def room3():
   #repaint(roomPic)
 
   # print description
+=======
+
+  global portal
+  play(portal)
+
+  global player
+  global rome
+  
+  #roomPic = chromaKey(player, rome)
+  #repaint(roomPic)
+
+  # print description
+>>>>>>> FETCH_HEAD
   room = "You are teleported to Rome..."
   showInformation(room)
   # print directions
   directions = 'You don\'t see any other portals. You can go \"back\"'
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
   showInformation(directions)
   # get user input
@@ -493,7 +689,11 @@ def room3():
       global myHealth
       showInformation("Your health = " + str(myHealth))
 <<<<<<< HEAD
+<<<<<<< HEAD
       userInput = requestString("Please Enter a choice.")
+=======
+      userInput = requestString("Please enter a choice:")
+>>>>>>> FETCH_HEAD
 =======
       userInput = requestString("Please enter a choice:")
 >>>>>>> FETCH_HEAD
@@ -508,6 +708,7 @@ def room4():
 
   weAreHere = 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   global portal
   play(portal)
   
@@ -516,6 +717,23 @@ def room4():
   showInformation(room)
   # print directions
   directions = "You can go \"back\" \"north\" or \"east\""
+=======
+
+  global portal
+  play(portal)
+
+  global player
+  global ocean
+  
+  #roomPic = chromaKey(player, ocean)
+  #repaint(roomPic)
+  
+  # print description
+  room = "You arrive in Atlantis there is a treasure chest you can \"look\" at or you can go for a \"swim\"..."
+  showInformation(room)
+  # print directions
+  directions = "You see portals to the \"north\" and \"east\" or go \"back\"."
+>>>>>>> FETCH_HEAD
 =======
 
   global portal
@@ -574,7 +792,11 @@ def room4():
       global myHealth
       showInformation("Your health = " + str(myHealth))
 <<<<<<< HEAD
+<<<<<<< HEAD
       userInput = requestString("Please Enter a choice.")  
+=======
+      userInput = requestString("Please enter a choice:")  
+>>>>>>> FETCH_HEAD
 =======
       userInput = requestString("Please enter a choice:")  
 >>>>>>> FETCH_HEAD
@@ -588,11 +810,26 @@ def room4():
 def room5():
   weAreHere = 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   global portal
   play(portal)
   
   # print description
   room = "You enter Room5 the door slams shut behind you...a scary guy blocks your path"
+=======
+
+  global portal
+  play(portal)
+
+  global player
+  global arctic
+  
+  #roomPic = chromaKey(player, arctic)
+  #repaint(roomPic)
+  
+  # print description
+  room = "You arrive in Iceland, a glacier collapses in front of the portal, you are trapped...a scary guy blocks your path"
+>>>>>>> FETCH_HEAD
 =======
 
   global portal
@@ -617,6 +854,7 @@ def room5():
 def secretRoom():
   weAreHere = 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   global portal
   play(portal)
   
@@ -637,10 +875,26 @@ def secretRoom():
   #repaint(roomPic)
   
   # print description
+=======
+
+  global portal
+  play(portal)
+
+  global player
+  global egypt
+  
+  #roomPic = chromaKey(player, egypt)
+  #repaint(roomPic)
+  
+  # print description
+>>>>>>> FETCH_HEAD
   room = "You enter a tomb inside the Great Pyramid. On a golden shelf, you see a Gun you can  \"grab\" ..."
   showInformation(room)
   # print directions
   directions = "There are no other portals. You can only go \"back\""
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
   showInformation(directions)
   # get user input
@@ -676,6 +930,7 @@ def secretRoom():
         for b in range(0, 6):
           items.append('bullet')
 <<<<<<< HEAD
+<<<<<<< HEAD
         showInformation("You grabbed it! Hope you wont need to use the \"gun\".")
       else:
         showInformation("There is nothing here.")
@@ -683,6 +938,11 @@ def secretRoom():
         showInformation("You grabbed it! Hope you won\'t need to use the \"gun\".")
       else:
         showInformation("There is nothing here.")
+=======
+        showInformation("You grabbed it! Hope you won\'t need to use the \"gun\".")
+      else:
+        showInformation("There is nothing here.")
+>>>>>>> FETCH_HEAD
       userInput = requestString("Please enter a choice:")
     elif userInput == "health":
       global myHealth
@@ -748,6 +1008,9 @@ def room6():
         myHealth += 50
       else:
         showInformation("There is nothing here.")
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
       userInput = requestString("Please enter a choice.")
     elif userInput == "health":
@@ -757,6 +1020,7 @@ def room6():
     elif userInput == "inventory":
       inventory()
     else:
+<<<<<<< HEAD
 <<<<<<< HEAD
       userInput = requestString("Please enter a valid choice!")
 
@@ -818,6 +1082,8 @@ def room6():
     elif userInput == "inventory":
       inventory()
     else:
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
       userInput = requestString("Please enter a valid choice!")            
@@ -892,10 +1158,17 @@ def bossFight():
         i = random.random()
         if int(i * 100) >= 80:
 <<<<<<< HEAD
+<<<<<<< HEAD
           showInformation("Boss has hit you")
           myHealth -= 5
         else:
           showInformation("Boss swings and misses")
+=======
+          showInformation("Boss has hit you.")
+          myHealth -= 5
+        else:
+          showInformation("Boss swings and misses.")
+>>>>>>> FETCH_HEAD
 =======
           showInformation("Boss has hit you.")
           myHealth -= 5
@@ -908,7 +1181,11 @@ def bossFight():
     quitGame = 1
   else:
 <<<<<<< HEAD
+<<<<<<< HEAD
     showInformation("You are dead")
+=======
+    showInformation("You are dead.")
+>>>>>>> FETCH_HEAD
 =======
     showInformation("You are dead.")
 >>>>>>> FETCH_HEAD
@@ -926,6 +1203,7 @@ def game():
   quitGame = 0
   while quitGame == 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
     showInformation("You awake in a dark room there is yelling in the distance...")
     
     roomPic = chromaKey(player, sanfran)
@@ -937,6 +1215,8 @@ def game():
       direction = room2()
     
 =======
+=======
+>>>>>>> FETCH_HEAD
     showInformation("You awaken on a beach, the Golden Gate Bridge is in the distance...")
     startingRoom()
 
