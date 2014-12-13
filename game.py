@@ -214,10 +214,26 @@ W   E
     return
 
 ########################
-#def inventory():
- # for i in items:
-  #  s += items[i]
-  #showInformation("You have ")               
+def inventory():
+  s = "Your inventory: "
+  numBullets = items.count("bullet")
+  if len(items) == 0:
+    showInformation("You have nothing in your inventory.")
+  else:
+   for i in items:
+    if i == 'bullet':
+      s += ""
+    else:
+      s += i + ", "
+  if numBullets == 0:
+    showInformation(s)
+  elif numBullets == 1:
+    s += str(numBullets) + " bullet"
+    showInformation(s)
+  else:
+    s += str(numBullets) + " bullets"
+    showInformation(s)
+               
 ########################
 # room 1
 # golden gate
@@ -253,6 +269,8 @@ def startingRoom():
       showInformation(room)
       showInformation(directions)
       userInput = requestString("Please enter a choice: ")
+    elif userInput == "inventory":
+      inventory()
     elif userInput == "open":
       global items
       global secret     
@@ -317,7 +335,9 @@ def room2():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice:")
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "inventory":
+      inventory()
     elif userInput == "back":
       play(portal)
       weAreHere = 1
@@ -376,7 +396,9 @@ def room3():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice:")
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "inventory":
+      inventory()
     elif userInput == "back":
       weAreHere = 1
       room2()
@@ -428,7 +450,9 @@ def room4():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice:")
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "inventory":
+      inventory()
     elif userInput == "back":
       weAreHere = 1
       room2()
@@ -512,7 +536,9 @@ def secretRoom():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice:")
+      userInput = requestString("Please enter a choice.")
+    elif userInput == "inventory":
+      inventory()
     elif userInput == "back":
       weAreHere = 1
       room4()
@@ -596,7 +622,9 @@ def room6():
     elif userInput == "health":
       global myHealth
       showInformation("Your health = " + str(myHealth))
-      userInput = requestString("Please enter a choice:")
+      userInput = requestString("Please Enter a choice.")
+    elif userInput == "inventory":
+      inventory()
     else:
       userInput = requestString("Please enter a valid choice!")            
 
@@ -662,6 +690,8 @@ def bossFight():
       elif userInput == "health":
         showInformation("Your health = " + str(myHealth))
         showInformation("Boss's health = " + str(bossHealth))    
+      elif userInput == "inventory":
+        inventory()
       else:
         userInput = requestString("Please enter a valid choice:")
       if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
