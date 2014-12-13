@@ -30,7 +30,7 @@ localPath = ""
 glass = ()
 gunshot = ()
 necksnap = ()
-punch = ()
+punchSound = ()
 room = ()
 secret = ()
 
@@ -76,7 +76,7 @@ def picSound(localPath):
   global glass
   global gunshot
   global necksnap
-  global punch
+  global punchSound
   global portal
   global secret
    
@@ -90,8 +90,8 @@ def picSound(localPath):
   necksnap = os.path.abspath(localPath + "/sounds/boss/necksnap.wav")
   necksnap = makeSound(necksnap)
   
-  punch = os.path.abspath(localPath + "/sounds/boss/punch.wav")
-  punch = makeSound(punch)
+  punchSound = os.path.abspath(localPath + "/sounds/boss/punch.wav")
+  punchSound = makeSound(punchSound)
   
   portal = os.path.abspath(localPath + "/sounds/room/portal.wav")
   portal = makeSound(portal)  
@@ -167,16 +167,21 @@ def picPic(localPath):
 # welcome message
 def welcome():
   global localPath
+  showInformation("""
+WORLDS OF WONDER ADVENTURE GAME\n  
+_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
+""")
+
   showInformation("Please select \"assets\" as your directory.")
   localPath = setMediaFolder()
   
   global userName
   
-  userName = requestString("Please enter your name")
+  userName = requestString("Hello traveler, what is your name?")
   while userName == "":
     userName = requestString("Please enter a valid name")
   
-  showInformation("Welcome, " + userName)
+  showInformation("Welcome, " + userName + ".")
   
   #init sound and pictures
   picSound(localPath)
@@ -184,26 +189,28 @@ def welcome():
   
   
   showInformation("In each room you will be told which directions you can go.")
-  showInformation("You'll be able to go north, south, east or west by typing that direction.")
-  showInformation("To display heatlh stats, enter \"health\".")
-  showInformation("To display your current inventory, enter \"inventory\".")
-  showInformation("To repeat the room description enter \"room\".")  
-  showInformation("Type help to redisplay this introduction.")
-  showInformation("Type exit to quit at any time.")
-  
+  showInformation("You'll be able to go north, south, east or west by typing that direction. It can take some time to travel through the portals. Be Patient.")
+  showInformation("To display health stats, type \"health\".")
+  showInformation("If you forget where you are, type \"room\".")  
+  showInformation("Type \"help\" to redisplay these instructions.")
+  showInformation("Type \"exit\" to end your adventure at any time.")
 
 def map():
   if "map" in items:
     showInformation(""" 
-                 N
-               W   E
-                 S
-                 _______
-                |_Start_|
-                 _|_____     _________
-                |_room2_| -  |_room3_|
-                 _|_____      ______
-         (S)-   |_room4_| -  |_boss_|\n""")
+  N
+W   E
+  S
+
+ _______________
+|_San Francisco_|
+          ____|_________ 
+         |_Grand-Canyon_|
+ ________   _|________   _________
+|_secret_|-|_Atlantis_|-|_Iceland_|
+              _|______
+             |_secret_|\n""")
+         
     return
 
 ########################
@@ -219,6 +226,7 @@ def inventory():
     else:
       s += i + ", "
   if numBullets == 0:
+    s = s[0:len(s)-2]
     showInformation(s)
   elif numBullets == 1:
     s += str(numBullets) + " bullet"
@@ -226,7 +234,7 @@ def inventory():
   else:
     s += str(numBullets) + " bullets"
     showInformation(s)
-                 
+               
 ########################
 # room 1
 # golden gate
@@ -236,16 +244,16 @@ def startingRoom():
   global player
   global roomPic
   
-  roomPic = chromaKey(player, sanfran)
-  repaint(roomPic)
+  #roomPic = chromaKey(player, sanfran)
+  #repaint(roomPic)
   
   weAreHere = 0
   
   # print description
-  room = "You are in the starting room. There is a chest you can \"open\" in the corner..."
+  room = "You look around the rocky beach. You see an old chest you can \"open\" in the sand..."
   showInformation(room)
   # print directions
-  directions = "You can only go south to room 2"
+  directions = "You see a portal to the south."
   showInformation(directions)
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -257,7 +265,7 @@ def startingRoom():
     elif userInput == "help":
       welcome()
       showInformation("")
-      userInput = requestString("Please enter a choice")
+      userInput = requestString("Please enter a choice:")
     elif userInput == "room":
       showInformation(room)
       showInformation(directions)
@@ -270,20 +278,20 @@ def startingRoom():
       if 'map' not in items:       
         items.append('map')
         play(secret)
-        showInformation("You found the map! You can view it by entering \"map\".")
+        showInformation("You found the map! You can view it by typing \"map\".")
       else:
         showInformation("There is nothing here.")
-      userInput = requestString("Please enter a choice.")
+      userInput = requestString("Please enter a choice:")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice.")
+      userInput = requestString("Please enter a choice:")
     elif userInput == "south":
       weAreHere = 1
       room2()
     elif userInput == "health":
       global myHealth
       showInformation("Your health = " + str(myHealth))
-      userInput = requestString("Please Enter a choice.")
+      userInput = requestString("Please enter a choice:")
     else:
       userInput = requestString("Please enter a valid choice!")
    
@@ -299,16 +307,16 @@ def room2():
   
   play(portal)
   
-  roomPic = chromaKey(player, grandcanyon)
-  repaint(roomPic)
+  #roomPic = chromaKey(player, grandcanyon)
+  #repaint(roomPic)
   
   weAreHere = 0
   
   # print description
-  room = "You enter Room2 its under constuction debris is everywhere..."
+  room = "You are teleported to the Grand Canyon, it's a long way down..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\" \"east\" or \"south\""
+  directions = "You see portals to the \"east\" and \"south\" or go \"back\". "
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -344,7 +352,7 @@ def room2():
     elif userInput == "health":
       global myHealth
       showInformation("Your health =" + str(myHealth))
-      userInput = requestString("Please Enter a choice.")
+      userInput = requestString("Please enter a choice:")
     else:
       userInput = requestString("Please enter a valid choice!")
 
@@ -353,15 +361,23 @@ def room2():
 # colosseum
 
 def room3():
+  
   weAreHere = 0
+
   global portal
   play(portal)
+
+  global player
+  global rome
   
+  #roomPic = chromaKey(player, rome)
+  #repaint(roomPic)
+
   # print description
-  room = "You enter Room3 all the windows are boarded up..."
+  room = "You are teleported to Rome..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\"\"
+  directions = 'You don\'t see any other portals. You can go \"back\"'
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -390,7 +406,7 @@ def room3():
     elif userInput == "health":
       global myHealth
       showInformation("Your health = " + str(myHealth))
-      userInput = requestString("Please Enter a choice.")
+      userInput = requestString("Please enter a choice:")
     else:
       userInput = requestString("Please enter a valid choice!")
       
@@ -399,15 +415,23 @@ def room3():
 # ocean
 
 def room4():
+
   weAreHere = 0
+
   global portal
   play(portal)
+
+  global player
+  global ocean
+  
+  #roomPic = chromaKey(player, ocean)
+  #repaint(roomPic)
   
   # print description
-  room = "You arrive at the Ocean there is an odd chest you can \"look\" at or you can go for a \"swim\"..."
+  room = "You arrive in Atlantis there is a treasure chest you can \"look\" at or you can go for a \"swim\"..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\" \"north\" or \"east\""
+  directions = "You see portals to the \"north\" and \"east\" or go \"back\"."
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -448,7 +472,7 @@ def room4():
     elif userInput == "health":
       global myHealth
       showInformation("Your health = " + str(myHealth))
-      userInput = requestString("Please Enter a choice.")  
+      userInput = requestString("Please enter a choice:")  
     else:
       userInput = requestString("Please enter a valid choice!")
 
@@ -458,11 +482,18 @@ def room4():
 
 def room5():
   weAreHere = 0
+
   global portal
   play(portal)
+
+  global player
+  global arctic
+  
+  #roomPic = chromaKey(player, arctic)
+  #repaint(roomPic)
   
   # print description
-  room = "You enter Room5 the door slams shut behind you...a scary guy blocks your path"
+  room = "You arrive in Iceland, a glacier collapses in front of the portal, you are trapped...a scary guy blocks your path"
   showInformation(room)
   bossFight()
   
@@ -472,14 +503,21 @@ def room5():
 
 def secretRoom():
   weAreHere = 0
+
   global portal
   play(portal)
+
+  global player
+  global egypt
+  
+  #roomPic = chromaKey(player, egypt)
+  #repaint(roomPic)
   
   # print description
-  room = "You enter a Secret Room from the bookcase in the center of the room you see a Gun you can  \"grab\" ..."
+  room = "You enter a tomb inside the Great Pyramid. On a golden shelf, you see a Gun you can  \"grab\" ..."
   showInformation(room)
   # print directions
-  directions = "There are no other exits You can only go \"back\""
+  directions = "There are no other portals. You can only go \"back\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -513,33 +551,40 @@ def secretRoom():
         items.append('gun')
         for b in range(0, 6):
           items.append('bullet')
-        showInformation("You grabbed it! Hope you wont need to use the \"gun\".")
+        showInformation("You grabbed it! Hope you won\'t need to use the \"gun\".")
       else:
         showInformation("There is nothing here.")
-      userInput = requestString("Please enter a choice.")
+      userInput = requestString("Please enter a choice:")
     elif userInput == "health":
       global myHealth
       showInformation("Your health = " + str(myHealth))
-      userInput = requestString("Please Enter a choice.")
+      userInput = requestString("Please enter a choice:")
     else:
       userInput = requestString("Please enter a valid choice!")
 
 ########################
 # second secret room secret room
 # tajmahal
-# reasure chest or underground cave from room 4 (ocean)
+# treasure chest or underground cave from room 4 (ocean)
 # magic whirlpool
 
 def room6():
   weAreHere = 0
+
   global portal
   play(portal)
+
+  global player
+  global tajmahal
+  
+  #roomPic = chromaKey(player, tajmahal)
+  #repaint(roomPic)
   
   # print description
-  room = "You find yourself at the tajmahal there is a miniture statue you can \"grab\"..."
+  room = "You find yourself at the Taj Mahal there is a miniture statue you can \"grab\"..."
   showInformation(room)
   # print directions
-  directions = "There are no other exits You can only go \"back\""
+  directions = "There are no other portals. You can only go \"back\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -559,7 +604,7 @@ def room6():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "map":
       map()
-      userInput = requestString("Please enter a choice.")
+      userInput = requestString("Please enter a choice:")
     elif userInput == "back":
       weAreHere = 1
       room4()
@@ -569,7 +614,7 @@ def room6():
       if 'idol' not in items:
         play(secret)
         items.append('idol')
-        showInformation("You grabbed it! your health has been increased.")
+        showInformation("You grabbed it! Your health has been increased.")
         global myHealth
         myHealth += 50
       else:
@@ -589,18 +634,28 @@ def room6():
 #use gun
 def useGun():
   global items
+  global gunshot
   numBullets = items.count('bullet')
   if numBullets > 0:
     items.remove('bullet')
     i = random.random()
     score = int(i * 100)
     if score <= 75:
+      play(gunshot)
       return 'Hit!'
     else:
       return 'You missed!'
   else:
-    return 'You are out of bullets'
+    return 'You are out of bullets.'
     
+########################
+#punch
+def punch():
+  i = random.random()
+  if int(i * 100) < 85 :
+    return "Hit!"
+  else:
+    return "Missed"  
 
 ########################
 #boss fight
@@ -639,32 +694,23 @@ def bossFight():
       elif userInput == "inventory":
         inventory()
       else:
-        userInput = requestString("Please enter a valid choice")
+        userInput = requestString("Please enter a valid choice:")
       if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
         i = random.random()
         if int(i * 100) >= 80:
-          showInformation("Boss has hit you")
+          showInformation("Boss has hit you.")
           myHealth -= 5
         else:
-          showInformation("Boss swings and misses")
+          showInformation("Boss swings and misses.")
  
   if myHealth > 0:
     showInformation("You killed the boss.  Congratulations!")
     quitGame = 1
   else:
-    showInformation("You are dead")
+    showInformation("You are dead.")
     quitGame = 1
     
   
-########################
-#punch
-def punch():
-  i = random.random()
-  if int(i * 100) < 85 :
-    return "Hit!"
-  else:
-    return "Missed"  
-
   
 ########################
 # main game
@@ -674,12 +720,9 @@ def game():
   global quitGame
   quitGame = 0
   while quitGame == 0:
-    showInformation("You awake in a dark room there is yelling in the distance...")
+    showInformation("You awaken on a beach, the Golden Gate Bridge is in the distance...")
     startingRoom()
 
   # goodbye message
   showInformation("Thanks for playing " + userName)
   quit
-     
-
-
