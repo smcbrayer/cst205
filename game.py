@@ -81,22 +81,22 @@ def picSound(localPath):
   global secret
    
   
-  glass = os.path.abspath(localPath + "assets/sounds/boss/glassbrk.wav")
+  glass = os.path.abspath(localPath + "/sounds/boss/glassbrk.wav")
   glass = makeSound(glass)
   
-  gunshot = os.path.abspath(localPath + "assets/sounds/boss/gunshot.wav")
+  gunshot = os.path.abspath(localPath + "/sounds/boss/gunshot.wav")
   gunshot = makeSound(gunshot)
   
-  necksnap = os.path.abspath(localPath + "assets/sounds/boss/necksnap.wav")
+  necksnap = os.path.abspath(localPath + "/sounds/boss/necksnap.wav")
   necksnap = makeSound(necksnap)
   
-  punch = os.path.abspath(localPath + "assets/sounds/boss/punch.wav")
+  punch = os.path.abspath(localPath + "/sounds/boss/punch.wav")
   punch = makeSound(punch)
   
-  portal = os.path.abspath(localPath + "assets/sounds/room/portal.wav")
+  portal = os.path.abspath(localPath + "/sounds/room/portal.wav")
   portal = makeSound(portal)  
   
-  secret = os.path.abspath(localPath + "assets/sounds/secret/secret.wav")
+  secret = os.path.abspath(localPath + "/sounds/secret/secret.wav")
   secret = makeSound(secret)
   
 ########################
@@ -120,46 +120,46 @@ def picPic(localPath):
   global powPic
   global zap
   
-  player = os.path.abspath(localPath + "assets/image/char/solo.jpg")
+  player = os.path.abspath(localPath + "/image/char/solo.jpg")
   player = makePicture(player)
   
-  arctic = os.path.abspath(localPath + "assets/image/room/arctic.jpg")
+  arctic = os.path.abspath(localPath + "/image/room/arctic.jpg")
   arctic = makePicture(arctic)
  
-  egypt = os.path.abspath(localPath + "assets/image/room/egypt.jpg")
+  egypt = os.path.abspath(localPath + "/image/room/egypt.jpg")
   egypt = makePicture(egypt)
   
-  grandcanyon = os.path.abspath(localPath + "assets/image/room/grandcanyon.jpg")
+  grandcanyon = os.path.abspath(localPath + "/image/room/grandcanyon.jpg")
   grandcanyon = makePicture(grandcanyon)
   
-  ocean = os.path.abspath(localPath + "assets/image/room/ocean.jpg")
+  ocean = os.path.abspath(localPath + "/image/room/ocean.jpg")
   ocean = makePicture(ocean)
   
-  rome = os.path.abspath(localPath + "assets/image/room/rome.jpg")
+  rome = os.path.abspath(localPath + "/image/room/rome.jpg")
   rome = makePicture(rome)
 
-  sanfran = os.path.abspath(localPath + "assets/image/room/sanfran.jpg")
+  sanfran = os.path.abspath(localPath + "/image/room/sanfran.jpg")
   sanfran = makePicture(sanfran)
   
-  tajmahal = os.path.abspath(localPath + "assets/image/room/tajmahal.jpg")
+  tajmahal = os.path.abspath(localPath + "/image/room/tajmahal.jpg")
   tajmahal = makePicture(tajmahal)
   
-  colt = os.path.abspath(localPath + "assets/image/secret/colt.jpg")
+  colt = os.path.abspath(localPath + "/image/secret/colt.jpg")
   colt = makePicture(colt)
   
-  eye = os.path.abspath(localPath + "assets/image/secret/eye.jpg")
+  eye = os.path.abspath(localPath + "/image/secret/eye.jpg")
   eye = makePicture(eye)
   
-  kali = os.path.abspath(localPath + "assets/image/secret/kali.jpg")
+  kali = os.path.abspath(localPath + "/image/secret/kali.jpg")
   kali = makePicture(kali)
   
-  boom = os.path.abspath(localPath + "assets/image/boss/boom.jpg")
+  boom = os.path.abspath(localPath + "/image/boss/boom.jpg")
   boom = makePicture(boom)
   
-  powPic = os.path.abspath(localPath + "assets/image/boss/pow.jpg")
+  powPic = os.path.abspath(localPath + "/image/boss/pow.jpg")
   powPic = makePicture(powPic)
 
-  zap = os.path.abspath(localPath + "assets/image/boss/zap.jpg")
+  zap = os.path.abspath(localPath + "/image/boss/zap.jpg")
   zap = makePicture(zap)
  
 
@@ -167,11 +167,14 @@ def picPic(localPath):
 # welcome message
 def welcome():
   global localPath
-  showInforamtion("Please select your local file path.")
-  localPath = setMediaFolder
+  showInformation("Please select \"assets\" as your directory.")
+  localPath = setMediaFolder()
   
   global userName
+  
   userName = requestString("Please enter your name")
+  while userName == "":
+    userName = requestString("Please enter a valid name")
   
   showInformation("Welcome, " + userName)
   
@@ -200,8 +203,12 @@ def map():
                  _|_____      ______
          (S)-   |_room4_| -  |_boss_|\n""")
     return
-              
-               
+
+########################
+#def inventory():
+ # for i in items:
+  #  s += items[i]
+  #showInformation("You have ")               
 ########################
 # room 1
 # golden gate
@@ -215,12 +222,12 @@ def startingRoom():
   repaint(roomPic)
   
   weAreHere = 0
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You are in the starting room. There is a chest you can \"open\" in the corner..."
   showInformation(room)
   # print directions
-  directions = "\nYou can only go south to room 2\n"
+  directions = "You can only go south to room 2"
   showInformation(directions)
   userInput = requestString("Please enter a choice: ")
   # while user input
@@ -276,12 +283,12 @@ def room2():
   repaint(roomPic)
   
   weAreHere = 0
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You enter Room2 its under constuction debris is everywhere..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\" \"east\" or \"south\"\n"
+  directions = "You can go \"back\" \"east\" or \"south\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -327,12 +334,12 @@ def room3():
   weAreHere = 0
   global portal
   play(portal)
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You enter Room3 all the windows are boarded up..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\"\n"
+  directions = "You can go \"back\"\"
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -371,12 +378,12 @@ def room4():
   weAreHere = 0
   global portal
   play(portal)
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You arrive at the Ocean there is an odd chest you can \"look\" at or you can go for a \"swim\"..."
   showInformation(room)
   # print directions
-  directions = "You can go \"back\" \"north\" or \"east\" \n"
+  directions = "You can go \"back\" \"north\" or \"east\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -427,7 +434,7 @@ def room5():
   weAreHere = 0
   global portal
   play(portal)
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You enter Room5 the door slams shut behind you...a scary guy blocks your path"
   showInformation(room)
@@ -441,12 +448,12 @@ def secretRoom():
   weAreHere = 0
   global portal
   play(portal)
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You enter a Secret Room from the bookcase in the center of the room you see a Gun you can  \"grab\" ..."
   showInformation(room)
   # print directions
-  directions = "There are no other exits You can only go \"back\"\n"
+  directions = "There are no other exits You can only go \"back\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
@@ -499,12 +506,12 @@ def room6():
   weAreHere = 0
   global portal
   play(portal)
-  showInformation("\n-----------------\n")
+  
   # print description
   room = "You find yourself at the tajmahal there is a miniture statue you can \"grab\"..."
   showInformation(room)
   # print directions
-  directions = "There are no other exits You can only go \"back\"\n"
+  directions = "There are no other exits You can only go \"back\""
   showInformation(directions)
   # get user input
   userInput = requestString("Please enter a choice: ")
