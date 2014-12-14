@@ -76,7 +76,7 @@ def picSound(localPath):
   global glass
   global gunshot
   global necksnap
-  global punch
+  global punchSOund
   global portal
   global secret
    
@@ -90,8 +90,8 @@ def picSound(localPath):
   necksnap = os.path.abspath(localPath + "/sounds/boss/necksnap.wav")
   necksnap = makeSound(necksnap)
   
-  punch = os.path.abspath(localPath + "/sounds/boss/punch.wav")
-  punch = makeSound(punch)
+  punchSound = os.path.abspath(localPath + "/sounds/boss/punch.wav")
+  punchSound = makeSound(punchSound)
   
   portal = os.path.abspath(localPath + "/sounds/room/portal.wav")
   portal = makeSound(portal)  
@@ -167,21 +167,23 @@ def picPic(localPath):
 # welcome message
 def welcome():
   global localPath
+  global userName
   showInformation("""
 WORLDS OF WONDER ADVENTURE GAME\n  
 _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
 """)
 
-  showInformation("Please select \"assets\" as your directory.")
-  localPath = setMediaFolder()
+  if localPath == "":
+    showInformation("Please select \"assets\" as your directory.")
+    localPath = setMediaFolder()
   
-  global userName
   
-  userName = requestString("Hello traveler, what is your name?")
-  while userName == "":
-    userName = requestString("Please enter a valid name")
+  if userName == "":
+    userName = requestString("Hello traveler, what is your name?")
+    while userName == "":
+      userName = requestString("Please enter a valid name")
   
-  showInformation("Welcome, " + userName + ".")
+    showInformation("Welcome, " + userName + ".")
   
   #init sound and pictures
   picSound(localPath)
@@ -226,13 +228,13 @@ def inventory():
       s += ""
     else:
       s += i + ", "
-  if numBullets == 0:
+  if numBullets == 0 and len(items) > 0:
     s = s[0:len(s)-2]
     showInformation(s)
   elif numBullets == 1:
     s += str(numBullets) + " bullet"
     showInformation(s)
-  else:
+  elif numBullets > 0:
     s += str(numBullets) + " bullets"
     showInformation(s)
                
@@ -273,6 +275,7 @@ def startingRoom():
       userInput = requestString("Please enter a choice: ")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     elif userInput == "open":
       global items
       global secret     
@@ -340,6 +343,7 @@ def room2():
       userInput = requestString("Please enter a choice.")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     elif userInput == "back":
       play(portal)
       weAreHere = 1
@@ -401,6 +405,7 @@ def room3():
       userInput = requestString("Please enter a choice.")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     elif userInput == "back":
       weAreHere = 1
       room2()
@@ -456,6 +461,7 @@ def room4():
       userInput = requestString("Please enter a choice.")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     elif userInput == "back":
       weAreHere = 1
       room2()
@@ -545,6 +551,7 @@ def secretRoom():
       userInput = requestString("Please enter a choice.")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     elif userInput == "back":
       weAreHere = 1
       room4()
@@ -633,6 +640,7 @@ def room6():
       userInput = requestString("Please Enter a choice.")
     elif userInput == "inventory":
       inventory()
+      userInput = requestString("Please enter a choice: ")
     else:
       userInput = requestString("Please enter a valid choice!")            
 
@@ -692,6 +700,7 @@ def bossFight():
         showInformation("Boss's health = " + str(bossHealth))    
       elif userInput == "inventory":
         inventory()
+        userInput = requestString("Please enter a choice: ")
       else:
         userInput = requestString("Please enter a valid choice:")
       if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
@@ -702,7 +711,9 @@ def bossFight():
         else:
           showInformation("Boss swings and misses.")
  
-  if myHealth > 0:
+  if userInput == 'exit':
+    quitGame = 1
+  elif myHealth > 0:
     showInformation("You killed the boss.  Congratulations!")
     quitGame = 1
   else:
