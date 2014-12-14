@@ -362,17 +362,17 @@ def room2():
 # colosseum
 
 def room3():
-  
-  weAreHere = 0
-
-  global portal
-  play(portal)
-
   global player
   global rome
+  global portal
+  global roomPic
   
-  #roomPic = chromaKey(player, rome)
-  #repaint(roomPic)
+  weAreHere = 0
+   
+  play(portal)  
+  
+  roomPic = chromaKey(player, rome)
+  repaint(roomPic)
 
   # print description
   room = "You are teleported to Rome..."
@@ -417,16 +417,17 @@ def room3():
 
 def room4():
 
-  weAreHere = 0
-
-  global portal
-  play(portal)
-
   global player
   global ocean
+  global portal
+  global roomPic
+
+  weAreHere = 0
   
-  #roomPic = chromaKey(player, ocean)
-  #repaint(roomPic)
+  play(portal)  
+  
+  roomPic = chromaKey(player, ocean)
+  repaint(roomPic)
   
   # print description
   room = "You arrive in Atlantis there is a treasure chest you can \"look\" at or you can go for a \"swim\"..."
@@ -482,16 +483,17 @@ def room4():
 # arctic
 
 def room5():
-  weAreHere = 0
-
-  global portal
-  play(portal)
-
+  
   global player
   global arctic
+  global portal
   
-  #roomPic = chromaKey(player, arctic)
-  #repaint(roomPic)
+  weAreHere = 0
+  
+  play(portal)  
+  
+  roomPic = chromaKey(player, arctic)
+  repaint(roomPic)
   
   # print description
   room = "You arrive in Iceland, a glacier collapses in front of the portal, you are trapped...a scary guy blocks your path"
@@ -503,16 +505,18 @@ def room5():
 # pyramid
 
 def secretRoom():
-  weAreHere = 0
-
-  global portal
-  play(portal)
-
+  
   global player
   global egypt
+  global portal
+  global roomPic
   
-  #roomPic = chromaKey(player, egypt)
-  #repaint(roomPic)
+  weAreHere = 0
+  
+  play(portal)  
+  
+  roomPic = chromaKey(player, egypt)
+  repaint(roomPic)
   
   # print description
   room = "You enter a tomb inside the Great Pyramid. On a golden shelf, you see a Gun you can  \"grab\" ..."
@@ -570,13 +574,15 @@ def secretRoom():
 # magic whirlpool
 
 def room6():
-  weAreHere = 0
-
-  global portal
-  play(portal)
-
+  
   global player
   global tajmahal
+  global portal
+  global roomPic
+  
+  weAreHere = 0
+  
+  play(portal)  
   
   #roomPic = chromaKey(player, tajmahal)
   #repaint(roomPic)
@@ -726,5 +732,7 @@ def game():
     startingRoom()
 
   # goodbye message
-  showInformation("Thanks for playing " + userName)
+  showInformation("Thanks for playing, " + userName)
   quit
+  
+game()
