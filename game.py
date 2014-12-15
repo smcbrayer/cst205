@@ -128,6 +128,7 @@ def picPic(localPath):
   global boom
   global powPic
   global zap
+  global mapImage
   
   player = os.path.abspath(localPath + "/image/char/solo.jpg")
   player = makePicture(player)
@@ -170,6 +171,9 @@ def picPic(localPath):
 
   zap = os.path.abspath(localPath + "/image/boss/zap.jpg")
   zap = makePicture(zap)
+  
+  mapImage = os.path.abspath(localPath + "/image/map/map.jpg")
+  mapImage = makePicture(mapImage)
  
 
 ########################
@@ -208,22 +212,7 @@ _,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,\n
   showInformation("Type \"exit\" to end your adventure at any time.")
 
 def map():
-  if "map" in items:
-    showInformation(""" 
-  N
-W   E
-  S
-
- _______________
-|_San Francisco_|
-          ____|_________ 
-         |_Grand-Canyon_|
- ________   _|________   _________
-|_secret_|-|_Atlantis_|-|_Iceland_|
-              _|______
-             |_secret_|\n""")
-         
-    return
+ show(mapImage)
 
 ########################
 def inventory():
