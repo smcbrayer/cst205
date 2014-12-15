@@ -671,6 +671,7 @@ def bossFight():
   global items
   global gunshot
   global punchSound
+  global necksnap
   
   weAreHere = 0
   while weAreHere == 0:
@@ -719,9 +720,11 @@ def bossFight():
     quitGame = 1
   elif myHealth > 0:
     showInformation("You killed the boss.  Congratulations!")
+    play(necksnap)
     quitGame = 1
   else:
     showInformation("You are dead.")
+    play(necksnap)
     quitGame = 1
     
   
