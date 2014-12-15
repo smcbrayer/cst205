@@ -1,7 +1,16 @@
-# Game
-# start game with game()
+###################################################
+# CorpsOfFour
+# Final Game
+# Written by:
+#  Shawn McBrayer
+#  Jeremy Fransen
+#  Chris Smith
+#  Maria Genitempo
 
-# lab 11 strategy game
+
+# Final Game
+# The game will begin after you hit load program
+
 #You should display a welcome message when the game starts. 
 #If the user types help at any time, you should redisplay the welcome message
 #If the user types exit at any time they should be able to quit the game
