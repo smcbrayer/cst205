@@ -600,8 +600,8 @@ def room6():
   
   play(portal)  
   
-  #roomPic = chromaKey(player, tajmahal)
-  #repaint(roomPic)
+  roomPic = chromaKey(player, tajmahal)
+  repaint(roomPic)
   
   # print description
   room = "You find yourself at the Taj Mahal there is a miniture statue you can \"grab\"..."
