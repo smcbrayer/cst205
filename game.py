@@ -85,7 +85,7 @@ def picSound(localPath):
   global glass
   global gunshot
   global necksnap
-  global punchSOund
+  global punchSound
   global portal
   global secret
    
@@ -680,6 +680,9 @@ def bossFight():
   global myHealth
   global quitGame
   global items
+  global gunshot
+  global punchSound
+  
   weAreHere = 0
   while weAreHere == 0:
     if bossHealth == 0 or myHealth == 0:
@@ -693,6 +696,7 @@ def bossFight():
         quitGame = 1
       elif userInput == "gun":
         if "gun" in items:
+          play(gunshot)
           result = useGun()
           showInformation(result)
           if "Hit" in result:
@@ -700,6 +704,7 @@ def bossFight():
         else:
           showInformation("You don't have a gun!")
       elif userInput == "punch":
+        play(punchSound)
         result = punch()
         showInformation(result)
         if "Hit" in result:
@@ -716,6 +721,7 @@ def bossFight():
         i = random.random()
         if int(i * 100) >= 80:
           showInformation("Boss has hit you.")
+          play(punchSound)
           myHealth -= 5
         else:
           showInformation("Boss swings and misses.")
