@@ -9,7 +9,7 @@
 
 
 # Final Game
-# The game will begin after you hit load program
+# The game will begin after you hit load program.
 
 #You should display a welcome message when the game starts. 
 #If the user types help at any time, you should redisplay the welcome message
