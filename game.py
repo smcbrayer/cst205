@@ -868,34 +868,35 @@ def bossFight():
             bossHealth -= 10
         else:
           showInformation("You don't have a gun!")
+        if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
+          i = random.random()
+          if int(i * 100) >= 80:
+            showInformation("Boss has hit you.")
+            play(punchSound)
+            myHealth -= 5
+          else:
+            showInformation("Boss swings and misses.")
       elif userInput == "punch":
         play(punchSound)
         result = punch()
         showInformation(result)
         if "Hit" in result:
           bossHealth -= 5
+        if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
+          i = random.random()
+          if int(i * 100) >= 80:
+            showInformation("Boss has hit you.")
+            play(punchSound)
+            myHealth -= 5
+          else:
+            showInformation("Boss swings and misses.")
       elif userInput == "health":
         showInformation("Your health = " + str(myHealth) + "\n"
                         + "Boss's health = " + str(bossHealth))    
       elif userInput == "inventory":
         inventory()
-        userInput = requestString("Would you like to: \n" +
-                                  "use your \"gun\"\n" +
-                                  "or \"punch\"")
       else:
-        userInput = requestString("Please enter a valid choice!\n" +
-                                  "Would you like to: \n" +
-                                  "use your \"gun\"\n" +
-                                  "or \"punch\"")
-      if (userInput == 'gun' or userInput == 'punch') and bossHealth > 0 :
-        i = random.random()
-        if int(i * 100) >= 80:
-          showInformation("Boss has hit you.")
-          play(punchSound)
-          myHealth -= 5
-        else:
-          showInformation("Boss swings and misses.")
- 
+        showInformation("Please enter a valid choice!")
   if userInput == 'exit':
     quitGame = 1
   elif myHealth > 0:
@@ -906,8 +907,8 @@ def bossFight():
     showInformation("You are dead.")
     play(necksnap)
     quitGame = 1
-    
-  
+      
+      
 ########################
 #punch
 def punch():
