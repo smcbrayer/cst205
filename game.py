@@ -847,8 +847,12 @@ def bossFight():
   
   weAreHere = 0
   while weAreHere == 0:
-    if bossHealth <= 0 or myHealth == 0:
+    if bossHealth <= 0 or myHealth <= 0:
       weAreHere = 1
+    elif "gun" not in items:
+      userInput = requestString("You can \"punch\"")
+      if userInput == "gun":
+        showInformation("You don't have a gun!") 
     else:
       userInput = requestString("Would you like to: \n" +
                                 "use your \"gun\"\n" +
@@ -858,7 +862,6 @@ def bossFight():
         quitGame = 1
       elif userInput == "gun":
         if "gun" in items:
-          play(gunshot)
           result = useGun()
           showInformation(result)
           if "Hit" in result:
@@ -872,8 +875,8 @@ def bossFight():
         if "Hit" in result:
           bossHealth -= 5
       elif userInput == "health":
-        showInformation("Your health = " + str(myHealth))
-        showInformation("Boss's health = " + str(bossHealth))    
+        showInformation("Your health = " + str(myHealth) + "\n"
+                        + "Boss's health = " + str(bossHealth))    
       elif userInput == "inventory":
         inventory()
         userInput = requestString("Would you like to: \n" +
